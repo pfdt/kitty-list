@@ -138,7 +138,7 @@ $(document).ready(function() {
 			let dateTime = date + ' ' + time;
 			let orderID = Date.now() + currentUserID.substring(currentUserID.length - 5);
 
-			let pathOrders = "orders/" + currentUserID + "/" + dateTime;
+			let pathOrders = "orders/" + dateTime + ' | ' + currentUserID;
 
 			let name = $('#name').val();
 			let message = $('#message').val();
@@ -163,6 +163,9 @@ $(document).ready(function() {
 				// Get product full price
 				let jsonIndex;
 				let fullPrice;
+				
+				// build gifts_list
+				gifts_list.push(product + " (" + price + "€ | " + contribution + ")");
 
 				$.ajax({
 					url: jsonFeedUrl,
@@ -213,8 +216,6 @@ $(document).ready(function() {
 							updates[pathProducts] = amountData;
 							return update(ref(db), updates);
 						}
-						// build gifts_list
-						gifts_list.push(product + " (" + price + "€ | " + contribution + ")");
 					} else {
 						// PRODUIT PAS DISPO
 					}				
@@ -224,16 +225,21 @@ $(document).ready(function() {
 			});
 
 			// save order to firebase
+			let orderUid = { uid: currentUserID };
 			let orderData = {
 				orderID: orderID,
 				name: name,
+				date: dateTime,
 				message: message,
 				total: totalAmount,
 				gifts: gifts_list
 			};
-			let updates = {};
-			updates[pathOrders] = orderData;
-			update(ref(db), updates);
+			let updatesUid = {};
+			let updatesData = {};
+			updatesUid[pathOrders] = orderUid;
+			updatesData[pathOrders+'/data'] = orderData;
+			update(ref(db), updatesUid);
+			update(ref(db), updatesData);
 			
 			// delete cookies
 			Cookies.remove('cart');
@@ -276,9 +282,17 @@ $(document).ready(function() {
 	/* ==========================================================================
 		pool link
 	========================================================================== */
-
+	
 	$('#contribute').on('click', function() {
-		confirmOrder();
+		let name = $('.cart-form').find('input[name="name"]').val();
+		let message = $('.cart-form').find('textarea[name="message"]').val();
+
+		if (name == "" || message == "") {
+			alert("Veuillez renseigner les informations avant de valider");
+		}
+		else {
+			confirmOrder();
+		}
 	});
 
 

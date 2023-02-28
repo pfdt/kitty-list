@@ -17,17 +17,17 @@ layout: default
 				</ul>
 			</li>		
 		</ul>
-		<form class="cart-form">
+		<form class="cart-form" name="cart">
 			<div>
-				<label for="name">offert par:</label>
+				<label for="name">offert par: *</label>
 				<input type="text" id="name" name="name" required maxlength="80">
 			</div>
 			<div>
-				<label for="message">message personnalisé :</label>
-				<textarea id="message" name="message" maxlength="300"></textarea>
+				<label for="message">message personnalisé : *</label>
+				<textarea id="message" name="message" required maxlength="300"></textarea>
 			</div>
 			<div class="button">	
-				<input id="contribute" class="inactive" type="button" value="Accéder au paiement">
+				<input id="contribute" type="button" value="Accéder au paiement">
 				<i>en cliquant sur ce bouton, vous serez redirigé vers le site lydia-app.com</i>
 			</div>
 		</form>
