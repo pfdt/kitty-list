@@ -1,0 +1,35 @@
+<div class="modal modal--addtocart fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			{% if page.layout == 'gift' %}
+			<div class="modal-header">
+				<h2 class="modal-title">cadeau ajouté au panier !</h2>
+				<button type="button" class="close modal-off" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-button">	
+				<a href="/" class="btn">retour à la liste</a>
+				<a href="/cart" class="btn">accéder au panier</a>
+			</div>
+			{% else if page.layout == 'cart' %}
+			<div class="modal-header">
+				<h2 class="modal-title">En attente de paiement...</h2>
+				<button type="button" class="close modal-off" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-desc">
+				<p>Vos produits ont été mis de côté, cliquez sur le bouton ci-dessous pour passer au paiement. Vous devrez renseigner le montant total de <strong>0 €</strong>.
+			</div>
+			<div class="modal-button">
+				<a href="{{ site.data.tools.pool.url }}" target="_blank" class="btn">Accéder au paiement</a>
+			</div>
+			<div class="modal-desc">
+					<p><i>Vous pourrez fermer cette fenêtre quand le paiement aura été confirmé.</i></p>
+				</div>
+			
+			{% endif %}
+		</div>
+	</div>
+</div>

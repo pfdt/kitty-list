@@ -1,0 +1,23 @@
+{% comment %}
+	gift card displayed in gifts list
+{% endcomment %}
+<div class="pure-u-1 pure-u-md-1-3 element-item {{ gift.slug }}">
+	<div class="card">						
+		<a href="{{ gift.url | relative_url }}" class="card-header">
+			{% if gift.image and gift.image != "" %}
+			<img class="lazy" data-src="{% if site.env != 'production' %}{{ site.data.content.url }}{% endif %}{{ gift.image | prepend: site.data.tools.netlify-lm.baseurl | append: site.data.tools.netlify-lm.img--1x1 }}" alt="{{ gift.title }}">
+			{% else %}
+			<img src="{{ site.data.content.placeholder | prepend: site.data.tools.netlify-lm.baseurl | append: site.data.tools.netlify-lm.img--1x1 }}" alt="{{ gift.title }}">
+			{% endif %}
+		</a>
+		<div class="card-body">
+			<a href="{{ gift.url | relative_url }}"><h3>{{ gift.title | downcase | truncate: 28 }}</h3></a>
+			<span class="brand">{{ gift.brand | upcase | truncate: 50 }}</span>
+			<span class="price">{% if gift.slug != "free-contribution" %}{{ gift.price }} {{ site.data.content.currency }}{% endif %}</span>
+			<p>{{ gift.content | strip_html | truncate: 105 }}</p>
+			<span class="unavailability">offert</span>	
+			<span class="amountLeft"></span>
+			<span class="cta"><a href="{{ gift.url | relative_url }}">en savoir plus</a></span>
+		</div>
+	</div>
+</div>

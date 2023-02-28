@@ -1,0 +1,233 @@
+/****** List layout > Cards *****/
+
+.gifts_list h2 {
+	margin: 0.5em 0.7em;
+}
+
+/* main structure */
+.container .element-item {
+	overflow: hidden;
+}
+.grid-layout > h2 {
+	margin: 0.5em;
+}
+.grid-layout .intro {
+	background-color: #DBBFAF;
+    margin-bottom: 1.6em;
+    overflow: hidden;
+    border-radius: 0.4em;
+    padding: 2em;
+    font-size: 1.2em;
+}
+.grid-layout .card {
+	display: flex;
+	flex-direction: column;
+	margin: 0 1em;
+	margin-bottom: 1.6em;
+	overflow: hidden;
+	border-radius: 0.4em;
+	position: relative;
+	height: 20rem;
+}
+.grid-layout .card-header {
+	display: block;
+	height: 77.5%;
+	overflow: hidden;
+	position: relative;
+	transition: all .6s cubic-bezier(.17,.67,.38,.91);
+}
+.grid-layout .card:hover .card-header {
+	transform: scale(1.05);
+}
+.grid-layout .card .card-body {
+	display: flex;
+    flex-wrap: wrap;
+	justify-content: space-between;
+    height: 22.5%;
+	padding: 1em;
+	box-sizing: border-box;
+	position: absolute;
+	background-color: var(--secondary-color);
+    width: 100%;
+    bottom: 0;
+    transition: all 0.2s ease-in;
+}
+.grid-layout .card:hover .card-body {
+	height: 48%;
+}
+@media (hover: none) and (pointer: coarse) {
+	.grid-layout .card:hover .card-body {
+		height: 22.5%;
+	}
+	.grid-layout .card.visible .card-body {
+		height: 48%;
+	}
+}
+.grid-layout .card .card-body h3 {
+    line-height: 1.2em;
+    height: 1.1em;
+    width: 100%;
+}
+.grid-layout .card .card-body a {
+	width: 100%;
+	overflow: hidden;
+}
+.grid-layout .card .card-body span.brand {
+	font-size: 0.9em;
+    height: 2em;
+    width: 70%;
+    text-transform: uppercase;
+}
+.grid-layout .card .card-body p {
+	font-size: 0.88em;
+    line-height: 1.3em;
+    height: 2.6em;
+    width: 100%;
+	margin: 0.3em 0 0.6em 0;
+	overflow: hidden;
+}
+.grid-layout .card.partial_contribution .card-body .price {
+	text-decoration: line-through;
+}
+.grid-layout .card .card-body .cta {
+	align-items: flex-end;
+    text-align: right;
+    text-transform: uppercase;
+}
+.grid-layout .card.unavailable {
+	filter: grayscale(0.8);
+}
+.grid-layout .card .unavailability,
+.grid-layout .card .amountLeft,
+.grid-layout .card.unavailable .price,
+.grid-layout .card.unavailable .cta,
+ {
+	display: none;
+}
+.grid-layout .card.unavailable .unavailability {
+	display: flex;
+	align-items: flex-start;
+    width: 50%;
+}
+.grid-layout .card.partial_contribution .amountLeft {
+	display: flex;
+}
+
+
+
+@media (max-width:768px) {
+	.grid-layout .card {
+		max-width: 600px;
+		margin: auto;
+		margin-bottom: 1.6em;
+	}
+	.grid-layout > h2 {
+		text-align: center;
+	}
+}
+
+/* cards img */
+.card-header img {
+	max-width: 100%;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@media (max-width:1024px) and (min-width:768px) {
+	.card-header img {
+		max-width: 140%
+	}
+}
+
+
+/* cards title */
+.grid-layout .card .card-header h3 {
+	position: absolute;
+	color: var(--primary-color);
+	left: 0.7em;
+	bottom: 0.6em;
+	margin: 0;
+	max-width: 85%;
+	z-index: 10;
+}
+
+.card-controls {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.6em 0.3em;
+	height: 3em;
+}
+
+/****** Single layout > Recipe *****/
+.left, .right {
+	padding: 0.5em;
+}
+.left {
+	width: 52%;
+}
+.right {
+	width: 48%;
+}
+.content_left, .content_right {
+	border-radius: 0.4em;
+}
+.content_left img {
+	width: 100%;
+	border-radius: 0.4em;
+}
+.content_right {
+	background-color: var(--secondary-color);
+	padding: 2em;
+}
+.gift h2 {
+	line-height: 1.2em;
+    width: 100%;
+}
+.gift .brandprice {
+    width: 100%;
+    text-transform: uppercase;
+}
+.gift .desc {
+	line-height: 1.3em;
+    width: 100%;
+    margin: 0.6em 0;
+}
+.container .unavailable-status {
+	display: none;
+}
+.container.unavailable .unavailable-status {
+	display: initial;
+}
+.addtocart {
+	margin-top: 1.8em;
+}
+.addtocart > div {
+    margin-bottom: 0.3em;
+}
+.addtocart > div > label{
+	padding-left: 0.4em;
+}
+.addtocart input.partial_contribution + label {
+    text-decoration: line-through;
+}
+form #addtocart {
+    margin-top: 0.5em;
+    padding: 0.2em 2em;
+}
+.reveal-if-active {
+	opacity: 0;
+	margin-left: 1.5em;
+	margin-top: 0.3em;
+}
+.reveal-if-active input {
+    max-width: 4em;
+    text-align: right;
+    height: 2em;
+}
+input[type="radio"]:checked ~ .reveal-if-active {
+	opacity: 1;
+}
+.addtocart > div:last-child {
+    display: flex;
+    justify-content: center;
+}

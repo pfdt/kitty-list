@@ -1,0 +1,26 @@
+---
+layout: default
+---
+{% comment %}
+	This layout is used to display all the gifts, filtered by a category if specified
+{% endcomment %}
+<div class="container pure-g">
+	<div class="pure-u-1 content grid-layout">
+		<div class="intro">
+			{{ content }}
+		</div>
+		{% assign sorted_gifts = site.gifts | sort: "title" %}
+		{% for category in site.data.taxonomies.categories %}
+			{% assign category_gift = sorted_gifts | where: "category", category %}
+			{% if category_gift.size > 0 %}		
+			<a id="{{ category | slugify }}"></a>
+			<h2>{{ category | downcase }}</h2>
+			<div class="pure-g">
+				{% for gift in category_gift %}
+							{% include gift-item.html %}
+				{% endfor %}			
+			</div>
+			{% endif %}
+		{% endfor %}		
+	</div>	
+</div>

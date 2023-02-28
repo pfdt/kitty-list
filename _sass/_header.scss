@@ -1,0 +1,45 @@
+/****** Header Section *****/
+
+/* header & nav */
+.site-header {
+	margin: 0;
+	background-color: var(--primary-color);
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6em;
+}
+.logo {
+	margin: 0 0.5em;
+}
+.logo a {
+	color: #737373;
+    font-size: 0.6em;
+}	 
+nav ul {
+	list-style-type: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	margin: 0 0.5em 0 0;
+}
+nav ul li {
+	list-style-type: none;
+}
+.navigation li a {
+	text-decoration: none;
+	margin: 0.8em 0 0.8em 1em;
+	transition: all 0.4s cubic-bezier(.17,.67,.38,.91) !important;
+	color: var(--dark-color);
+	font-size: 1.2em;
+	display: inline;
+	white-space: nowrap;
+	line-height: 0.4em
+}

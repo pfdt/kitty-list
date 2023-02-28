@@ -1,0 +1,110 @@
+.cart form {
+		display: flex;
+		flex-direction: column;
+	}
+	.cart form div {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		margin-top: 0.5em;
+	}
+	.cart form textarea {
+		resize: none;
+		height: 10em;
+		width: 100%;
+	}
+	.cart form div.little {
+		flex-direction: row;
+		align-items: baseline;
+		margin-top: 1.8em;
+	}
+	.cart form div.little label {
+		margin-right: 6em;
+	}
+	.cart form div.little input {
+		width: 5.5em;
+		padding-right: 2.5em;
+		text-align: right;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.cart form div.little span {
+		position: absolute;
+		right: 0.5em;
+		top: 50%;
+		transform: translateY(-50%);
+		color: var(--dark-color);
+	}
+	.cart form .button {
+		margin-top: 1.8em;
+	}
+	.cart form i {
+		font-size: 0.8em;
+	}
+	
+	@media (max-width:768px){.left, .right{width:100%; padding: 0.3em 1em;}}
+	
+	/****** CART *****/
+	
+	.cart-main {
+		background-color: var(--secondary-color);
+		margin: auto;
+		max-width: 800px;
+		overflow: hidden;
+		border-radius: 0.4em;
+		padding: 2em;
+		font-size: 1.2em;   
+	}
+	.cart-main .cart-empty, .cart-main.empty .cart-list, .cart-main.empty .cart-form {
+		display: none;
+	}
+	.cart-main.empty .cart-empty {
+		display: block;
+	}
+	.cart-list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0;
+		margin: auto;
+	}
+	.cart-list li {
+		list-style: none;
+		width: 100%;
+		margin-bottom: 0.5em;
+	}
+	li.item {
+		border-bottom: solid 0.01rem var(--light-color);
+	}
+	.cart-list ul {
+		display: flex;
+		align-items: center;
+		padding: 0;
+	}
+	.cart-list .title {
+		display: flex;
+		flex-direction: column;
+	}
+	.cart-list .brand {
+		font-size: 0.8em;
+		text-transform: uppercase;
+	}
+	.cart-list .price {
+		text-align: right;
+		width: 12rem;
+	}
+	.cart-list .remove {
+		text-align: center;
+		width: 5rem;
+		cursor: pointer;
+	}
+	#cart-total {
+		margin-top: 0.5em;
+		font-weight: bold;
+	}
+	#cart-total .title {
+		text-align: right;
+	}

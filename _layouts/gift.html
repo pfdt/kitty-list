@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{% comment %}
+	This layout is used by the documents in the _gifts/ collection
+{% endcomment %}
+<div class="container pure-g" slug="{{ page.slug }}">
+  <div class="pure-u-1">
+    <div class="content content-narrow">
+		<div class="left">
+			<div class="content_left">
+				{% if page.image and page.image != "" %}
+	            <img src="{% if site.env != 'production' %}{{ site.data.content.url }}{% endif %}{{ page.image | prepend: site.data.tools.netlify-lm.baseurl | append: site.data.tools.netlify-lm.img--1x1 }}" alt="{{ page.title }}">
+				{% else %}
+	            <img src="{{ site.data.content.placeholder | prepend: site.data.tools.netlify-lm.baseurl | append: site.data.tools.netlify-lm.img--1x1 }}" alt="{{ page.title }}">
+				{% endif %}
+			</div>
+		</div>
+		<div class="right">
+			<div class="content_right">
+				<h2><a href="{{ page.url | absolute_url }}" id="title">{{ page.title | downcase }}</a></h2>
+				<span class="brand">{{ page.brand | upcase }}</span>
+				<div class="desc">{{ content }}</div>
+
+				<form class="addtocart" onsubmit="return false">
+					{% if page.slug != "free-contribution" %}
+					<div>
+						<input type="radio" name="contribution" id="full" checked>
+							<label for="full">Offrir la totalité ({{ page.price }} {{ site.data.content.currency }})</label>
+					</div>
+					{% endif %}		
+					<div>
+						<input type="radio" name="contribution" id="partial" required {% if page.slug == "free-contribution" %}checked{% endif %}>
+						<label for="partial">Offrir une participation</label>
+						<div class="reveal-if-active">	
+							<label for="contribution"></label>
+							<input type="text" id="contribution" name="contribution" class="require-if-active" data-require-pair="#partial" maxlength="7" step=".01" max="{{ page.price }}" initial_value="{{ page.price }}" value="{{ page.price }}" required>
+							<span>{{ site.data.content.currency }}</span>
+						</div>
+					</div>					
+					<div>	
+						<input id="addtocart" type="submit" data-slug="{{ page.slug }}" data-product="{{ page.title }}" data-brand="{{ page.brand }}" data-quantity="1" value="Offrir">
+					</div>
+				</form>
+				<span class="unavailable-status">déjà offert !</span>
+			</div>
+		</div>
+    </div>
+  </div>
+</div>
+{% include modal.html %}

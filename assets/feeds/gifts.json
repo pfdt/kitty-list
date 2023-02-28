@@ -1,0 +1,15 @@
+---
+layout: compress
+regenerate: true
+---
+{% assign first = true %}
+[
+{% for item in site.gifts %}{% if item.title != null and item.title != empty %}{% unless first %},{% endunless %}{
+    "slug": {{ item.slug | jsonify }},
+    "title": {{ item.title | jsonify }},
+    "brand": {{ item.brand | jsonify }},
+    "category": {{ item.category | jsonify }},
+    "price": {{ item.price | jsonify }},
+    "image": {{ item.image | jsonify }},
+}
+{% assign first = false %}{% endif %}{% endfor %}]
