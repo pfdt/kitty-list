@@ -40,6 +40,11 @@
 	}
 	.cart form .button {
 		margin-top: 1.8em;
+		display: none;
+		
+		&.active {
+			display: flex;
+		}
 	}
 	.cart form i {
 		font-size: 0.8em;

@@ -177,7 +177,6 @@ $(document).ready(function() {
 				// check availability & set amountLeft
 				
 				onValue(ref(db, pathProducts), (snapshot) => {
-					console.log('1');
 
 					if (slug == "free-contribution") {
 						availability = true;
@@ -201,7 +200,6 @@ $(document).ready(function() {
 							amountLeft = fullPrice - price;
 						}
 					}
-console.log('2');
 					if (availability == true) {
 
 						// set totalAmount
@@ -224,7 +222,7 @@ console.log('2');
 					onlyOnce: true
 				});
 			});
-console.log('x');
+
 			// save order to firebase
 			let orderData = {
 				orderID: orderID,
@@ -239,7 +237,6 @@ console.log('x');
 			
 			// delete cookies
 			Cookies.remove('cart');
-			console.log('coucou');
 			// modal
 			modalON();
 
@@ -352,12 +349,9 @@ console.log('x');
 
 	//
 	$(document).on('click', '.cart-list .remove', function() {
-		console.log('yo');
 		let initial_cookie = Cookies.getJSON('cart') || [];
-		console.log(initial_cookie);
 		var slug = $(this).closest('.item').attr('id');
 		var new_cookie = updateJSON(initial_cookie, null, slug);
-		console.log(slug);
 		Cookies.set('cart', JSON.stringify(new_cookie), { expires: 7 })
 		removeCartItem(slug);
 	});
@@ -403,6 +397,7 @@ console.log('x');
 					$("#cart-total").before(elementLi);
 					cart_total += price;
 					$('#cart-total .price .amount').text(cart_total.toFixed(2));
+					$('.cart form .button').addClass('active');
 				}
 			}, {
 				onlyOnce: true

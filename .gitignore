@@ -1,0 +1,17 @@
+_site/
+.bundle/
+.jekyll-cache/
+.sass-cache/
+.jekyll-metadata
+.DS_Store
+vendor/
+*/.DS_Store
+/_data/
+/_plugins/
+/_posts/
+/_gifts/
+/admin/
+/Gemfile
+/Gemfile.lock
+/_config.yml
+/*.md
