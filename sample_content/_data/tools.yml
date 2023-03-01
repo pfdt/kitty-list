@@ -1,0 +1,12 @@
+pool:
+  url: https:/url-of-the-kitty-service.com
+google-analytics:
+  id: 
+netlify-lm:
+  img--1x1: ?nf_resize=smartcrop&w=600&h=600
+  img--sharing: ?nf_resize=smartcrop&w=1200&h=630
+firebase: 
+  apiKey: 
+  projectId: 
+  dbUrl: 
+  

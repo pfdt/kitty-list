@@ -15,3 +15,4 @@ vendor/
 /Gemfile.lock
 /_config.yml
 /*.md
+!README.md

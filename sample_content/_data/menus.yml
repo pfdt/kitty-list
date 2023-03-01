@@ -1,0 +1,10 @@
+---
+navigation:
+  - url: /about
+    title: about
+    identifier: about
+  - url: /cart
+    title: cart
+    identifier: cart
+
+---

@@ -1,0 +1,141 @@
+---
+---
+backend:
+  name: git-gateway
+  branch: {% if site.branch and site.branch != "" %}{{ site.branch }}{% else %}main{% endif %}
+local_backend: true
+media_folder: 'assets/img'
+site_url: {{ site.data.content.url }}
+display_url: {{ site.data.content.url }}
+
+collections:
+  - name: 'gifts'
+    label: 'Gifts'
+    folder: '_gifts/'
+    create: true
+    preview_path: '{% raw %}{{slug}}{% endraw %}'
+    fields:
+      - {label: 'Titre', name: 'title', widget: 'string'}
+      - {label: 'Marque', name: 'brand', widget: 'string'}
+      - {
+        label: 'Category',
+        name: 'category',
+        widget: 'relation',
+        collection: 'settings',
+        file: 'taxonomies',
+        display_fields: [categories.*],
+        search_fields: [categories.*],
+        value_field: 'categories.*',
+      }
+      - {label: 'Prix', name: 'price', widget: 'number', default: 0, min: 0}
+      - {label: 'Image', name: 'image', widget: 'image', choose_url: false, required: false}
+      - {label: 'Description', name: 'body', widget: 'markdown', required: false}
+      - {label: 'Date', name: 'date', widget: 'datetime', date_format: true, time_format: false}
+      - {label: 'Published', name: 'published', widget: 'boolean', default: true}
+      - {label: 'Layout', name: 'layout', widget: 'hidden', default: 'gift'}
+      
+  - name: 'pages'
+    label: 'Pages'
+    files:
+    - label: 'Accueil'
+      name: 'index'
+      file: 'index.md'
+      format: 'md'
+      fields:
+        - {label: 'Title', name: 'title', widget: 'string', required: true}
+        - {label: "Texte d'accueil", name: 'body', widget: 'markdown', required: false}
+    
+    - label: 'A propos'
+      name: 'about'
+      file: 'about.md'
+      format: 'md'
+      fields:
+        - {label: 'Title', name: 'title', widget: 'string', required: true}
+        - {label: 'Texte', name: 'body', widget: 'markdown', required: false}
+ 
+  - name: 'settings'
+    label: 'Settings'
+    files:
+    - label: 'Meta & content'
+      name: 'content'
+      file: '_data/content.yml'
+      format: 'yml'
+      fields:
+        - {label: 'Website title', name: 'title', widget: 'string'}
+        - {label: 'Website short description', name: 'description', widget: 'string'}
+        - {label: 'Website meta-description', name: 'meta-description', widget: 'text'}
+        - {label: 'Website URL', name: 'url', widget: 'string', pattern: ['https?:\/\/([-a-zA-Z0-9@:%._\+~#=]{1,256}\.)?([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)([-a-zA-Z0-9()!@:%_\+.~#?&=]$)', 'Must be a valid url'], hint: 'Website URL including http... and without ending /'}
+        - {label: 'Placeholder gift', name: 'placeholder', widget: 'image', choose_url: false}
+        - {label: 'Devise', name: 'currency', widget: 'string', default: '€'}
+    - label: 'Menus'
+      name: 'menus'
+      file: '_data/menus.yml'
+      format: 'yml'
+      fields:
+        - name: 'navigation'
+          label: 'Main navigation'
+          widget: 'list'
+          summary: '{% raw %}{{fields.title}}{% endraw %}'
+          fields:
+            - {label: 'Title', name: 'title', widget: 'string'}
+            - {label: 'Path URL', name: 'url', widget: 'string'}
+            - {label: 'Label', name: 'identifier', widget: 'string'}
+    - label: 'Taxonomies'
+      name: 'taxonomies'
+      file: '_data/taxonomies.yml'
+      format: 'yml'
+      fields:
+        - name: 'categories'
+          label: 'Categories'
+          widget: 'list'
+          summary: '{% raw %}{{fields.title}}{% endraw %}'
+          field: {label: 'Title', name: 'title', widget: 'string'}
+    - label: 'Thème'
+      name: 'theme'
+      file: '_data/theme.yml'
+      format: 'yml'
+      fields:
+        - label: 'Theme colors'
+          name: 'theme_color'
+          widget: 'object'
+          fields:
+            - {label: 'Primary color', name: 'primary', widget: 'color', hint: 'used for website background'}
+            - {label: 'Secondary color', name: 'secondary', widget: 'color', hint: 'used for blocks background'}
+            - {label: 'Light color', name: 'light', widget: 'color', hint: 'used for light font color'}
+            - {label: 'Dark color', name: 'dark', widget: 'color', hint: 'used for dark font color and button background'}
+    - label: 'Tools'
+      name: 'tools'
+      file: '_data/tools.yml'
+      format: 'yml'
+      fields:
+      - label: 'Google Analytics'
+        name: 'google-analytics'
+        widget: 'object'
+        collapsed: true
+        fields:
+        - {label: 'Traking ID', name: 'id', widget: 'string', hint: 'GA4 tracking ID starting with G-', pattern: ['G-[a-zA-Z0-9]{1,20}', 'Must be a valid GA4 tracking ID']}
+      - label: 'Netlify Large Media'
+        name: 'netlify-lm'
+        widget: 'object'
+        collapsed: true
+        hint: 'Netlify LM transformation query string parameters'
+        fields:
+        - {label: '1x1 image', name: 'img--1x1', widget: 'string', default: '?nf_resize=smartcrop&w=600&h=600'}
+        - {label: '1x1 image', name: 'img--sharing', widget: 'string', default: '?nf_resize=smartcrop&w=1200&h=630'}
+      - label: 'Cagnotte'
+        name: 'pool'
+        widget: 'object'
+        collapsed: true
+        hint: 'Informations sur la cagnotte'
+        fields:
+        - {label: 'URL', name: 'url', widget: 'string', pattern: ['https?:\/\/([-a-zA-Z0-9@:%._\+~#=]{1,256}\.)?([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'Must be a valid url']}
+      - label: 'Firebase'
+        name: 'firebase'
+        widget: 'object'
+        collapsed: true
+        hint: 'Firebase Realtime Database config for collection and ratings functions'
+        fields:
+        - {label: 'API key', name: 'apiKey', widget: 'string'}
+        - {label: 'Project ID', name: 'projectId', widget: 'string'}
+        - {label: 'Database name', name: 'dbName', widget: 'string'}
+	   

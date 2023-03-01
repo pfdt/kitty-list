@@ -1,0 +1,43 @@
+remote_theme: pfdt/kitty-list@main
+
+collections:
+  gifts:
+    output: true
+    permalink: "/:path/"
+  posts:
+    output: true
+    
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: gifts
+    values:
+      layout: gift
+
+sass:
+  style: compressed
+  
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: []
+  blanklines: false
+  profile: false
+  startings: all
+  
+  plugins:
+    - jekyll-remote-theme
+    - jekyll-sitemap
+  
+  exclude:
+    - ".gitignore"
+    - ".gitattributes"
+    - ".jekyll-cache"
+    - README.md
