@@ -348,7 +348,7 @@ textarea:focus {
 /****** About section *****/
 
 .about .main {
-	background-color: #DBBFAF;
+	background-color: var(--secondary-color);
 	margin: auto;
 	max-width: 800px;
 	overflow: hidden;
