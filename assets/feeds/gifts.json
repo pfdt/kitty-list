@@ -10,6 +10,6 @@ regenerate: true
     "brand": {{ item.brand | jsonify }},
     "category": {{ item.category | jsonify }},
     "price": {{ item.price | jsonify }},
-    "image": {{ item.image | jsonify }},
+    "image": {{ item.image | jsonify }}
 }
 {% assign first = false %}{% endif %}{% endfor %}]

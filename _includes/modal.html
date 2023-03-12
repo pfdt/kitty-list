@@ -20,13 +20,13 @@
 				</button>
 			</div>
 			<div class="modal-desc">
-				<p>Vos produits ont été mis de côté, cliquez sur le bouton ci-dessous pour passer au paiement. Vous devrez renseigner le montant total de <strong>0 €</strong>.
+				<p>Vos produits ont été mis de côté, cliquez sur le bouton ci-dessous pour passer au paiement sur {{ site.data.tools.pool.name }}. <strong>Vous devrez renseigner sur {{ site.data.tools.pool.name }} le montant total de <span id="cartTotalAmount">0 €</span></strong>.
 			</div>
 			<div class="modal-button">
-				<a href="{{ site.data.tools.pool.url }}" target="_blank" class="btn">Accéder au paiement</a>
+				<a href="{{ site.data.tools.pool.url }}" target="_blank" id="orderPayment" class="btn">Accéder au paiement</a>
 			</div>
 			<div class="modal-desc">
-					<p><i>Vous pourrez fermer cette fenêtre quand le paiement aura été confirmé.</i></p>
+					<p><i>Vous pourrez fermer cette fenêtre uniquement quand {{ site.data.tools.pool.name }} aura confirmé votre paiement.</i></p>
 				</div>
 			
 			{% endif %}

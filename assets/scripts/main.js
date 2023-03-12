@@ -8,7 +8,7 @@
 const
 	pool_url = "{{ site.data.tools.pool.url }}",
 	currency = "{{ site.data.content.currency }}",
-	jsonFeedUrl = "/assets/feeds/gifts.json",
+	jsonFeedUrl = "./assets/feeds/gifts.json",
 	firebase_apiKey = {{ site.data.tools.firebase.apiKey | jsonify }},
 	firebase_projectId = {{ site.data.tools.firebase.projectId | jsonify }},
 	firebase_databaseURL = {{ site.data.tools.firebase.dbUrl | jsonify }},
@@ -176,9 +176,7 @@ $(document).ready(function() {
 						fullPrice = Number(data[jsonIndex].price);
 					}
 				});
-
 				// check availability & set amountLeft
-				
 				onValue(ref(db, pathProducts), (snapshot) => {
 
 					if (slug == "free-contribution") {
@@ -207,14 +205,17 @@ $(document).ready(function() {
 
 						// set totalAmount
 						totalAmount += price;
-						$(".modal-desc p strong").text(totalAmount + ' ' + currency);
+						$("#cartTotalAmount").text(totalAmount + ' ' + currency);
 
 						// save new amountLeft to firebase
 						if (slug !== "free-contribution") {
 							let amountData = { amountLeft: amountLeft };
 							let updates = {};
 							updates[pathProducts] = amountData;
+							
+							$('#orderPayment').on('click', function() {
 							return update(ref(db), updates);
+							})
 						}
 					} else {
 						// PRODUIT PAS DISPO
@@ -223,8 +224,11 @@ $(document).ready(function() {
 					onlyOnce: true
 				});
 			});
+			
+			// modal
+			modalON();
 
-			// save order to firebase
+			// build firebase request
 			let orderUid = { uid: currentUserID };
 			let orderData = {
 				orderID: orderID,
@@ -238,14 +242,15 @@ $(document).ready(function() {
 			let updatesData = {};
 			updatesUid[pathOrders] = orderUid;
 			updatesData[pathOrders+'/data'] = orderData;
-			update(ref(db), updatesUid);
-			update(ref(db), updatesData);
 			
-			// delete cookies
-			Cookies.remove('cart');
-			// modal
-			modalON();
-
+			$('#orderPayment').on('click', function() {
+				// save order to firebase
+				update(ref(db), updatesUid);
+				update(ref(db), updatesData);
+				
+				// delete cookies
+				Cookies.remove('cart');
+			});
 		}
 	}
 
