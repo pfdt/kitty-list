@@ -113,7 +113,7 @@ collections:
         widget: 'object'
         collapsed: true
         fields:
-        - {label: 'Traking ID', name: 'id', widget: 'string', hint: 'GA4 tracking ID starting with G-', pattern: ['G-[a-zA-Z0-9]{1,20}', 'Must be a valid GA4 tracking ID']}
+        - {label: 'Traking ID', name: 'id', widget: 'string', hint: 'GA4 tracking ID starting with G-', pattern: ['G-[a-zA-Z0-9]{1,20}', 'Must be a valid GA4 tracking ID'], required: false}
       - label: 'Netlify Large Media'
         name: 'netlify-lm'
         widget: 'object'
@@ -128,6 +128,7 @@ collections:
         collapsed: true
         hint: 'Informations sur la cagnotte'
         fields:
+        - {label: 'Name of the pool service', name: 'name', widget: 'string'}
         - {label: 'URL', name: 'url', widget: 'string', pattern: ['https?:\/\/([-a-zA-Z0-9@:%._\+~#=]{1,256}\.)?([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'Must be a valid url']}
       - label: 'Firebase'
         name: 'firebase'
@@ -137,5 +138,5 @@ collections:
         fields:
         - {label: 'API key', name: 'apiKey', widget: 'string'}
         - {label: 'Project ID', name: 'projectId', widget: 'string'}
-        - {label: 'Database name', name: 'dbName', widget: 'string'}
+        - {label: 'Database URL', name: 'dbURL', widget: 'string', pattern: ['https?:\/\/([-a-zA-Z0-9@:%._\+~#=]{1,256}\.)?([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'Must be a valid url']}
 	   
