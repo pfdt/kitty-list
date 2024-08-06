@@ -209,9 +209,10 @@ $(document).ready(function() {
 
 						// save new amountLeft to firebase
 						if (slug !== "free-contribution") {
-							let amountData = { amountLeft: amountLeft };
+							let data = snapshot.val() || {};
+							data.amountLeft = amountLeft;
 							let updates = {};
-							updates[pathProducts] = amountData;
+							updates[pathProducts] = data;
 							
 							$('#orderPayment').on('click', function() {
 							return update(ref(db), updates);
